@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco Banana - Sabor Natural del Banano</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #8B4513 0%, #D2B48C 50%, #F5DEB3 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(245, 222, 179, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(139, 69, 19, 0.15);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #8B4513;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo i {
+            color: #FFD700;
+            transform: rotate(-15deg);
+            font-size: 2.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #654321;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #8B4513;
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(210, 180, 140, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23F5DEB3" width="1200" height="600"/><circle fill="%23FFD700" cx="200" cy="150" r="80" opacity="0.6"/><circle fill="%238B4513" cx="800" cy="400" r="120" opacity="0.4"/><circle fill="%23D2B48C" cx="1000" cy="200" r="90" opacity="0.5"/><path d="M100,300 Q300,200 500,300 T900,300" stroke="%23FFD700" stroke-width="8" fill="none" opacity="0.7"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.3) 20%, transparent 50%);
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            color: #FFD700;
+            text-stroke: 2px #8B4513;
+        }
+
+        .hero .tagline {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #F5DEB3;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F5DEB3;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #8B4513;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(45deg, #FFA500, #FFD700);
+        }
+
+        /* Main Content */
+        main {
+            background: #F5DEB3;
+            margin-top: 80px;
+            border-radius: 30px 30px 0 0;
+            overflow: hidden;
+            box-shadow: 0 -10px 30px rgba(139, 69, 19, 0.2);
+        }
+
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #8B4513;
+            margin-bottom: 4rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 3px;
+        }
+
+        /* Value Proposition */
+        .value-props {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
+            border-color: #FFD700;
+        }
+
+        .value-card i {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .value-card h3 {
+            color: #8B4513;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .value-card p {
+            color: #654321;
+            line-height: 1.7;
+        }
+
+        /* Target Audience */
+        .audience-section {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .audience-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .audience-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .audience-item i {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        /* Blog Posts */
+        .blog-post {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
+            border-color: #FFD700;
+        }
+
+        .blog-header {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 2.5rem;
+        }
+
+        .blog-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+
+        .blog-meta {
+            color: #F5DEB3;
+            font-size: 1rem;
+        }
+
+        .blog-content {
+            padding: 2.5rem;
+            color: #654321;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Colors Section */
+        .colors-section {
+            background: #F5DEB3;
+            padding: 4rem 0;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .color-item {
+            text-align: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .brown-dark { background: #8B4513; }
+        .brown-light { background: #D2B48C; }
+        .golden { background: #FFD700; }
+        .beige { background: #F5DEB3; }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #8B4513, #654321);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            color: #8B4513;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .value-props,
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-cookie-bite"></i>
+                Choco Banana
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#producto">Producto</a></li>
+                <li><a href="#publico">Público</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#colores">Colores</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="floating">Choco Banana</h1>
+                <p class="tagline">🍌 Sabor Natural del Banano 🍫</p>
+                <p>Una galleta deliciosa y nutritiva elaborada con plátano natural y acompañada por chispas de chocolate, diseñada para ofrecer una merienda saludable y llena de energía para tus días.</p>
+                <a href="#producto" class="cta-button">
+                    <i class="fas fa-heart"></i> Descubre Nuestra Galleta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="content-section" id="producto">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">¿Por Qué Choco Banana?</h2>
+                
+                <div class="value-props">
+                    <div class="value-card animate-on-scroll">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Ingredientes Naturales</h3>
+                        <p>Elaborada con ingredientes naturales, evitando elementos procesados y químicos artificiales. Nuestro compromiso con la salud y el bienestar del consumidor.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <i class="fas fa-heart-pulse"></i>
+                        <h3>Alternativa Nutritiva</h3>
+                        <p>Una opción más nutritiva y genuina frente a opciones comerciales. Ideal para quienes buscan cuidar su alimentación sin renunciar al sabor.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <i class="fas fa-sparkles"></i>
+                        <h3>Combinación Irresistible</h3>
+                        <p>La dulzura del sabor del plátano con chispas de chocolate, creando una experiencia que despierta sensaciones de dulzura y placer gustativo.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <i class="fas fa-flag"></i>
+                        <h3>Sabor Colombiano</h3>
+                        <p>Evoca el paladar colombiano con sabores distintivos, reflejando nuestro compromiso con la tradición y los ingredientes frescos de nuestra tierra.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Opción Segura</h3>
+                        <p>Perfecta para personas con restricciones alimentarias, garantizando calidad y seguridad en cada mordida.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <i class="fas fa-star"></i>
+                        <h3>Producto Innovador</h3>
+                        <p>Una propuesta innovadora que satisface la curiosidad de quienes buscan probar sabores nuevos y auténticos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="audience-section" id="publico">
+            <div class="container">
+                <h2 class="section-title" style="color: #FFD700;">Nuestro Público Objetivo</h2>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">Diseñada especialmente para crear momentos felices y recordar la infancia</p>
+                
+                <div class="audience-grid">
+                    <div class="audience-item animate-on-scroll">
+                        <i class="fas fa-child"></i>
+                        <h3>Niños (4-14 años)</h3>
+                        <p>Nuestro público principal. El sabor dulce les aporta energía, con colores atractivos y contenido divertido que conecta con su mundo.</p>
+                    </div>
+                    
+                    <div class="audience-item animate-on-scroll">
+                        <i class="fas fa-users"></i>
+                        <h3>Jóvenes y Adultos (18-40 años)</h3>
+                        <p>Personas que buscan sabores auténticos y alternativas más ricas y naturales para cualquier antojo en sus días.</p>
+                    </div>
+                    
+                    <div class="audience-item animate-on-scroll">
+                        <i class="fas fa-heart"></i>
+                        <h3>Familias Conscientes</h3>
+                        <p>Padres que buscan opciones nutritivas para sus hijos sin sacrificar el sabor y la diversión.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="blog">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Blog Choco Banana</h2>
+                
+                <article class="blog-post animate-on-scroll">
+                    <div class="blog-header">
+                        <h3 class="blog-title">La Filosofía Detrás de Choco Banana</h3>
+                        <div class="blog-meta">
+                            <i class="fas fa-calendar"></i> 28 de Mayo, 2025 | 
+                            <i class="fas fa-user"></i> Equipo Choco Banana
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <p>Nuestro nombre tiene como concepto crear momentos felices, recordando a los consumidores su infancia o momentos de compartir con amigos. Cada galleta está diseñada para evocar esas sensaciones de calidez y alegría que nos conectan con nuestros seres queridos.</p>
+                        <p>Nuestro enfoque en lo natural y nutritivo transmite un mensaje claro: cuidar de uno mismo puede ser delicioso y accesible. No tienes que elegir entre salud y sabor, con Choco Banana puedes tener ambos.</p>
+                        <p>Al ofrecer sabores gustativos únicos, demostramos que estamos en sintonía con las tendencias actuales y las necesidades reales de los consumidores modernos.</p>
+                    </div>
+                </article>
+
+                <article class="blog-post animate-on-scroll">
+                    <div class="blog-header">
+                        <h3 class="blog-title">Nuestra Estrategia Digital: Conectando con Familias</h3>
+                        <div class="blog-meta">
+                            <i class="fas fa-calendar"></i> 25 de Mayo, 2025 | 
+                            <i class="fas fa-user"></i> Equipo Marketing
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <p><strong>Redes Sociales (Instagram, TikTok, Facebook):</strong> Creamos contenido atractivo y llamativo con videos donde mostramos nuestra galleta en acción. Contenido divertido que conecta con niños y padres por igual.</p>
+                        <p><strong>Email Marketing:</strong> Tenemos un sistema de correo electrónico diseñado para captar clientes y ofrecerles descuentos especiales en su primera compra, creando una experiencia de bienvenida memorable.</p>
+                        <p>Nuestro objetivo es claro: dar a conocer nuestra galleta de banana como una opción nueva e innovadora en el sector alimenticio, aumentar ventas y crear contenido atractivo que genere conexión emocional con nuestras familias.</p>
+                    </div>
+                </article>
+
+                <article class="blog-post animate-on-scroll">
+                    <div class="blog-header">
+                        <h3 class="blog-title">La Tradición Colombiana en Cada Mordida</h3>
+                        <div class="blog-meta">
+                            <i class="fas fa-calendar"></i> 22 de Mayo, 2025 | 
+                            <i class="fas fa-user"></i> Departamento de Calidad
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <p>Nuestra marca representa y refleja el compromiso con la tradición y el sabor colombiano, mostrando la esencia de los ingredientes naturales que caracterizan nuestro país.</p>
+                        <p>Somos diferentes por nuestros ingredientes frescos y naturales que garantizan calidad superior. Este producto evoca el paladar colombiano con sabores distintivos que nos hacen únicos en el mercado.</p>
+                        <p>La combinación de banana y chocolate no solo atrae por su sabor, sino por la experiencia completa que ofrece: desde el aroma hasta la textura, cada elemento está cuidadosamente pensado para crear momentos memorables.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="colors-section" id="colores">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Nuestros Colores de Marca</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: #654321; margin-bottom: 3rem;">Cada color tiene un significado especial relacionado con nuestros ingredientes y las sensaciones que buscamos transmitir</p>
+                
+                <div class="color-palette">
+                    <div class="color-item animate-on-scroll">
+                        <div class="color-swatch brown-dark"></div>
+                        <h3 style="color: #8B4513;">Marrón Oscuro</h3>
+                        <p>Representa el chocolate, nuestro ingrediente principal. Evoca sensaciones de calidez, riqueza y dulzura.</p>
+                    </div>
+                    
+                    <div class="color-item animate-on-scroll">
+                        <div class="color-swatch brown-light"></div>
+                        <h3 style="color: #8B4513;">Marrón Claro</h3>
+                        <p>Crea contrastes hermosos y da la impresión de una galleta recién horneada, añadiendo sensación de calidez.</p>
+                    </div>
+                    
+                    <div class="color-item animate-on-scroll">
+                        <div class="color-swatch golden"></div>
+                        <h3 style="color: #8B4513;">Amarillo Dorado</h3>
+                        <p>Evoca la banana, asociado con alegría, energía y dulzura. Se relaciona con la calidez y el sol.</p>
+                    </div>
+                    
+                    <div class="color-item animate-on-scroll">
+                        <div class="color-swatch beige"></div>
+                        <h3 style="color: #8B4513;">Beige/Crema</h3>
+                        <p>Transmite sensación de suavidad, naturalidad y limpieza, creando el contraste perfecto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Choco Banana</h3>
+                    <p>Creando momentos felices con cada galleta. La perfecta combinación de tradición colombiana y sabor natural.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contáctanos</h3>
+                    <p><i class="fas fa-envelope"></i> chocobanan35@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +57 3243450036</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Colombia</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="border-top: 2px solid rgba(255,215,0,0.3); padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 Choco Banana - Todos los derechos reservados</p>
+                <p style="color: #FFD700; font-weight: bold;">🍌 "Sabor Natural del Banano" 🍫</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">
+                    
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(245, 222, 179, 0.98)';
+                header.style.boxShadow = '0 8px 32px rgba(139, 69, 19, 0.25)';
+            } else {
+                header.style.background = 'rgba(245, 222, 179, 0.95)';
+                header.style.boxShadow = '0 8px 32px rgba(139, 69, 19, 0.15)';
+            }
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Logo hover effect
+            const logo = document.querySelector('.logo i');
+            const logoText = document.querySelector('.logo');
+            
+            logoText.addEventListener('mouseenter', function() {
+                logo.style.transform = 'rotate(360deg) scale(1.2)';
+                logo.style.transition = 'all 0.5s ease';
+            });
+            
+            logoText.addEventListener('mouseleave', function() {
+                logo.style.transform = 'rotate(-15deg) scale(1)';
+            });
+
+            // Add click effect to CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                }, 150);
+            });
+
+            // Color cards interaction
+            const colorItems = document.querySelectorAll('.color-item');
+            colorItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const swatch = this.querySelector('.color-swatch');
+                    swatch.style.transform = 'scale(1.1) rotate(5deg)';
+                    swatch.style.transition = 'all 0.3s ease';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const swatch = this.querySelector('.color-swatch');
+                    swatch.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+        });
